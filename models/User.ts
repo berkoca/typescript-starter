@@ -1,22 +1,31 @@
-import { Table, Column, Model, AutoIncrement, PrimaryKey } from 'sequelize-typescript';
+import { AutoIncrement, Column, CreatedAt, DeletedAt, Model, PrimaryKey, Table, UpdatedAt } from 'sequelize-typescript';
 import { UserRole } from '../enums';
 
-@Table
-export class User extends Model<User> {
+@Table({ paranoid: true })
+export class User extends Model {
     @AutoIncrement
     @PrimaryKey
     @Column
-    public id: number;
+    id: number;
 
     @Column
-    public name: string;
-    
-    @Column
-    public email: string;
-    
-    @Column
-    public password: string;
+    name: string;
 
     @Column
-    public role: UserRole;
+    email: string;
+
+    @Column
+    password: string;
+
+    @Column
+    role: UserRole;
+
+    @CreatedAt
+    createdAt: Date;
+  
+    @UpdatedAt
+    updatedAt: Date;
+  
+    @DeletedAt
+    deletedAt: Date;
 }

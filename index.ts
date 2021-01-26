@@ -4,7 +4,7 @@ dotenv.config({ path: '.env' });
 import express from 'express';
 import router from './routes';
 import { syncDB } from './utils';
-import { urlencoded, json } from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 
 const app: express.Application = express();
 const port = process.env.PORT || 3000;
@@ -15,4 +15,4 @@ app.use('/api', router);
 
 syncDB(true);
 
-app.listen(port, () => console.log(`App listening on port ${port}.`));
+app.listen(port, () => console.log('App listening on port: ' + port));
